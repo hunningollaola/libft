@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerrell <gmerrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:47:49 by gmerrell          #+#    #+#             */
-/*   Updated: 2019/09/25 18:09:53 by gmerrell         ###   ########.fr       */
+/*   Created: 2019/09/05 13:36:32 by mgrass            #+#    #+#             */
+/*   Updated: 2019/09/25 16:57:42 by gmerrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	unsigned char				*s1;
-	unsigned char				*s2;
-	size_t						i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
+	size_t			i;
 
+	ptr1 = (unsigned char *)dst;
+	ptr2 = (unsigned char *)src;
 	i = 0;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	if (s1 == s2)
-		return (dst);
-	if (s1 > s2)
+	while (n > i)
 	{
-		i = len;
-		while (i-- > 0)
-			s1[i] = s2[i];
+		ptr1[i] = ptr2[i];
+		if (ptr1[i] == (unsigned char)c)
+			return (dst + i + 1);
+		i++;
 	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			s1[i] = s2[i];
-			i++;
-		}
-	}
-	return (dst);
+	return (NULL);
 }

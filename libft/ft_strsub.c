@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerrell <gmerrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:47:49 by gmerrell          #+#    #+#             */
-/*   Updated: 2019/09/25 18:09:53 by gmerrell         ###   ########.fr       */
+/*   Created: 2019/09/25 12:59:12 by gmerrell          #+#    #+#             */
+/*   Updated: 2019/09/27 21:40:08 by gmerrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	unsigned char				*s1;
-	unsigned char				*s2;
-	size_t						i;
+	size_t				i;
+	char				*p;
 
 	i = 0;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	if (s1 == s2)
-		return (dst);
-	if (s1 > s2)
+	if (s == NULL)
+		return (NULL);
+	p = ft_strnew(len);
+	if (p == NULL)
+		return (NULL);
+	while (i < len)
 	{
-		i = len;
-		while (i-- > 0)
-			s1[i] = s2[i];
+		p[i] = s[start + i];
+		i++;
 	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			s1[i] = s2[i];
-			i++;
-		}
-	}
-	return (dst);
+	p[i] = '\0';
+	return (p);
 }

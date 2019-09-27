@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerrell <gmerrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:47:49 by gmerrell          #+#    #+#             */
-/*   Updated: 2019/09/25 18:09:53 by gmerrell         ###   ########.fr       */
+/*   Created: 2019/09/26 17:32:41 by gmerrell          #+#    #+#             */
+/*   Updated: 2019/09/26 17:52:26 by gmerrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	unsigned char				*s1;
-	unsigned char				*s2;
-	size_t						i;
+	unsigned int	i;
+	unsigned int	k;
 
 	i = 0;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	if (s1 == s2)
-		return (dst);
-	if (s1 > s2)
+	k = 0;
+	while (s1[i])
+		i++;
+	while (s2[k] && k < n)
 	{
-		i = len;
-		while (i-- > 0)
-			s1[i] = s2[i];
+		s1[i] = s2[k];
+		i++;
+		k++;
 	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			s1[i] = s2[i];
-			i++;
-		}
-	}
-	return (dst);
+	s1[i] = '\0';
+	return (s1);
 }

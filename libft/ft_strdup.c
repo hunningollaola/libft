@@ -1,42 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerrell <gmerrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:47:49 by gmerrell          #+#    #+#             */
-/*   Updated: 2019/09/25 18:09:53 by gmerrell         ###   ########.fr       */
+/*   Created: 2019/09/25 19:42:36 by gmerrell          #+#    #+#             */
+/*   Updated: 2019/09/27 21:05:48 by gmerrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+char	*ft_strdup(const char *s1)
 {
-	unsigned char				*s1;
-	unsigned char				*s2;
-	size_t						i;
+	char		*str;
 
-	i = 0;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	if (s1 == s2)
-		return (dst);
-	if (s1 > s2)
-	{
-		i = len;
-		while (i-- > 0)
-			s1[i] = s2[i];
-	}
-	else
-	{
-		i = 0;
-		while (i < len)
-		{
-			s1[i] = s2[i];
-			i++;
-		}
-	}
-	return (dst);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (str == NULL)
+		return (NULL);
+	return (ft_strcpy(str, s1));
 }

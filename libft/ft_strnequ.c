@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gmerrell <gmerrell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/09 22:47:49 by gmerrell          #+#    #+#             */
-/*   Updated: 2019/09/25 18:09:53 by gmerrell         ###   ########.fr       */
+/*   Created: 2019/09/25 12:27:45 by gmerrell          #+#    #+#             */
+/*   Updated: 2019/09/27 14:34:03 by gmerrell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	unsigned char				*s1;
-	unsigned char				*s2;
-	size_t						i;
+	size_t i;
 
 	i = 0;
-	s1 = (unsigned char *)dst;
-	s2 = (unsigned char *)src;
-	if (s1 == s2)
-		return (dst);
-	if (s1 > s2)
+	if (n == 0)
+		return (1);
+	if (s1 && s2)
 	{
-		i = len;
-		while (i-- > 0)
-			s1[i] = s2[i];
-	}
-	else
-	{
-		i = 0;
-		while (i < len)
+		if (!s1 || !s2)
+			return (1);
+		while (*s1 == *s2 && s2 && n > i + 1)
 		{
-			s1[i] = s2[i];
+			s1++;
+			s2++;
 			i++;
 		}
+		if (*s1 != *s2)
+			return (0);
+		return (1);
 	}
-	return (dst);
+	return (0);
 }
